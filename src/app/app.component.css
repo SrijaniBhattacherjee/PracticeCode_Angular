@@ -1,0 +1,19 @@
+/*
+This is external css applied. There can be internal css.
+and Inline css as well. Also, we can add styles through @componnet decorator.
+Can provide inline styles and style Urls as well.
+*/
+.btn{
+    width: 80px;
+    height: 80px; 
+    border-radius: 50%;
+    margin: 10px;
+    color: red;
+    cursor: pointer;
+}
+.btn:hover{
+    border: 1px solid #fff;
+}
+.active{
+    background-color: red;
+}

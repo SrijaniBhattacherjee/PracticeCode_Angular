@@ -1,0 +1,23 @@
+<H2>Welcome ! {{name}}</H2>
+
+<!--Template driven forms : NgModel,NgForm,Errors is needed--> 
+<H1>Template driven forms</H1>
+
+<form #userForm="ngForm" (ngSubmit)="addDetails(userForm.value)">
+    <input #username="ngModel" type="text" required placeholder="enter name" name="username" ngModel>
+    <span class="danger" *ngIf="username.invalid && username.touched"> name is required</span>
+    <br><br>
+    <input #password="ngModel" type="password" min="5" maxlength="10" required placeholder="enter password" name="password" ngModel>
+    <span class="danger" *ngIf="(password.invalid && password.touched)"> enter valid password</span>
+    <br><br>
+    <input type="email" placeholder="enter email" name="email" ngModel>
+    <br><br>
+    <select name="gender" ngModel>
+        <option value="">select gender</option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+    </select>
+    <br><br>
+    <button type="submit" [disabled]="userForm.invalid">add user</button>
+</form>
+

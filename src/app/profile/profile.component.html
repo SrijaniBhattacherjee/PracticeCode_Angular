@@ -1,0 +1,13 @@
+<h1>Hey! This is profile component</h1>
+
+<a [routerLink]="['Login',{name:'Srijani'}]">Go to Login</a>
+
+Dynamic Routing for the data passing
+<h3>User lists</h3>
+<ul>
+    <li *ngFor="let x of users">
+        <a routerLink="User/{{x.name}}/{{x.Id}}">{{x.name}}</a>
+    </li>
+</ul>
+
+<h2>user name is : {{user}}</h2>

@@ -1,0 +1,166 @@
+<H1>Hello ! Welcome to Angular Tutorial</H1>
+
+<h2>Interpolation in angular</h2>
+<p>{{name}}</p> <!--Interpolation example-->
+<p>{{9+9}}</p> <!-- Interpolation for numbers direct result-->
+<p>{{10 == 10}}</p> <!--The comparison for two gives true/false-->
+<p>{{title.toUpperCase()}}</p><!--Pipes can also be used-->
+<!--No new value assigned or increment of values nothing is possible here-->
+
+<h3>Component Reuse</h3>
+<app-login></app-login> <!--componnet selector usage-->
+<app-profile></app-profile> <!--component custom created and used-->
+<h3>Event Binding</h3>
+<button (click)="buttonclickfunction()">Click me !</button> <!--Event binding example-->
+
+<!--small app on event-->
+<div style="text-align: center;">
+    <h2>Counter App</h2>
+    <h3 class="count">{{count}}</h3>
+    <div>
+        <button class="btn" (click)="handleDecrement()">Decrement</button>
+        <button class="btn" (click)="handleReset()">Reset</button>
+        <button class="btn" (click)="handleIncrement()">Increment</button>
+    </div>
+</div>
+<!--Different types for Events-->
+<button (mouseover)="handleMouseEvent($event)">Decrement</button>
+<br><br>
+<textarea (keyup)="handleEvent($event)"></textarea>
+
+<h2>Get and Set Input fields</h2>
+<!-- Get and set input field value-->
+<!--with using #getName we can use template reference variable in the form field-->
+ <h3>Get the user input : {{displayName}}</h3>
+ <input type="text" value="{{getName}}" name="input field" (input)="getNameFunc($event)" placeholder="Enter username">
+ <br><br>
+ <button (click)="showName()">Get value</button>
+ <button (click)="setName()">Set value</button>
+ <button (click)="resetValue()">Reset Value</button>
+
+ <!--Else if, if else control statements used-->
+ <h3>If Else in Angular | Control flow</h3>
+ @if (display) {
+    <div style="width: 200px; height: 200px; background-color: green;">
+    </div>
+ }
+<br><button (click)="hideBlock()">Toggle</button>
+
+<!--Switch statemnet being used when multiple statements are there-->
+@switch(color){
+    @case('red'){
+        <h1 style="background-color: red;">Red Color</h1>
+    }@case ('green') 
+    {
+        <h1 style="background-color: green;">Green Color</h1>
+    }
+    @default {
+        <h1 style="background-color: white;">Green Color</h1>
+    }
+}
+<!--For log in html template for iterating through arrays-->
+<!--Below is one type we can write the directives but there is one more way
+thats the legacy one with '*ngFor, *ngIf'-->
+<h4>For loop in Angular</h4>
+@for(user of users; track user.name;){
+    <div><h5>{{user.age}}</h5><h5>{{user.name}}</h5></div>
+}
+<!--Signals and effect usage in angular-->
+<h1>Computed signals</h1>
+<h1>{{signals()}}</h1>
+<button (click)="signals.set('Srijani')">Update name effect</button>
+
+<!--Two way binding for using event and property together-->
+<h3>Two way binding</h3>
+<input [(ngModel)]="data" (click)="changeName($event)" type="text" placeholder="enter name">
+<h1>{{data}}</h1>
+
+<!--Example for ngIf , ngFor, NgSwitch-->
+<!--If Ng module is been used you need to import it into the module section-->
+<H3>Directives</H3>
+<h3 *ngIf="number==10">Hey ! This is structural directive</h3>
+
+<ul>
+    <li *ngFor="let x of Teachers">
+        {{x}}
+    </li>
+</ul>
+
+<ul>
+    <li *ngFor="let y of Office">
+        {{y.name + ' -'}}
+        {{y.city}}
+    </li>
+</ul>
+
+<!--Routing Concept-->
+<h3>Routing concepts usage</h3>
+<router-outlet>
+    <ul>
+        <li>
+            <a routerLinkActive="active" routerLink="Login">Login</a>
+        </li>
+        <li>
+            <a routerLink="Profile">Profile</a>
+        </li>
+    </ul>
+</router-outlet>
+
+
+<!--Reactive forms: formgroup,formcontrol,validators, getvalue, setvalue,errors-->
+<H1>Basic of reactive forms</H1>
+<!--
+   <input type="text" placeholder="enter name" [formControl]="username"><br><br>
+    <input type="password" placeholder="enter the password" [formControl]="password">
+    <br><br>
+    <button type="button" (click)="displayform()">Submit</button>
+    <button type="button" (click)="resetformvalue()">Reset values</button>
+-->
+<form [formGroup]="formGroup" (ngSubmit)="onsubmit()">
+    <input type="text" placeholder="enter name" formControlName="username"><br><br>
+    <span class='danger' *ngIf="username?.hasError('required')">Name is required</span> <!--Error message usage-->
+    <span class='danger' *ngIf="username?.invalid && (username?.dirty || username?.touched)">Please provide valid username</span>
+    <input type="password" placeholder="enter the password" formControlName="password">
+    <br><br>
+    <button type="button" (click)="onsubmit()">Submit</button>
+    <button type="button" (click)="resetformvalue()">Reset values</button>
+</form>
+
+<!--Input decorator usage and passing data-->
+<app-profile [user]="selectedUser.value"></app-profile> <!--data sharing input output-->
+
+<select #selectedUser (change)="onUserchange(selectedUser.value)" name="" id="">
+    <option value="Anil Sidhu">Anil Sidhu</option>
+    <option value="Sam">Sam</option>
+    <option value="Peter">Peter</option>
+    <option value="Tony">Tony</option>
+</select>
+
+<!--Pipes usage-->
+<h2>Custom pipes creation</h2>
+<h3>{{amount | currencyConverter}}</h3> 
+<h3>{{amount | currencyConverter : 10}}</h3> 
+<!--Usage of arguments through pipes passing-->
+
+<h2>Services in Angular</h2>
+<button (click)="getUserList()">Get the user data</button>
+
+<ul>
+    <li *ngFor = "let users of getUserData">
+        {{users.name + ' ' + '|'}}
+        {{users.branch + ' ' + '|'}}
+        {{users.stock}}
+    </li>
+</ul>
+
+<H2>Dynamic API call Service</H2> 
+@for(product of products; track product.id){
+    <ul>
+        <li><b>ID: </b>{{product.id}}</li>
+        <li><b>Name: </b>{{product.title}}</li>
+        <li><b>Brand: </b>{{product.brand}}</li>
+        <li><b>Price: </b>{{product.price}}</li>
+        <li><b>Rating: </b>{{product.rating}}</li>
+        <img src="{{product.thumbnail}}" alt="" height="80px" width="100px">
+    </ul>
+}
