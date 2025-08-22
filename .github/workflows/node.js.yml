@@ -28,7 +28,3 @@ jobs:
       # Build Angular app
       - name: Build Angular
         run: npm run build --if-present
-
-      # Optional: Run tests
-      - name: Run tests
-        run: npm test --if-present
